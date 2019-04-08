@@ -1,0 +1,87 @@
+10a11,12
+> import socket
+> import urllib2
+395c397
+<                index=False, retry_count=3, pause=0.001, drop_factor=True):
+---
+>                index=False, retry_count=3, pause=0.001, drop_factor=True, ascend=False):
+451c453
+<         data = data.sort_index(ascending = False)
+---
+>         data = data.sort_index(ascending=ascend)
+461c463
+<         data = data.sort_index(ascending = False)
+---
+>         data = data.sort_index(ascending=ascend)
+467c469,471
+<             df = _parase_fq_factor(code, start, end)
+---
+>             df = pd.DataFrame()
+>             while df.empty: 
+>                 df = _parase_fq_factor(code, start, end)
+469c473
+<             df = df.sort_values('date', ascending = False)
+---
+>             df = df.sort_values('date', ascending=ascend)
+493c497
+<             data = data.sort_index(ascending = False)
+---
+>             data = data.sort_index(ascending=ascend)
+504c508
+<             data = data.sort_index(ascending = False)
+---
+>             data = data.sort_index(ascending=ascend)
+510a515,524
+>     header = {
+>         "User-Agent":"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
+>         'Connection':'keep-alive',
+>         'X-Forwarded-For':'10.237.75.123'
+>     }
+>     header['X-Forwarded-For'] = str(random.randint(1,254)) + '.' + str(random.randint(1,254)) + '.' + str(random.randint(1,254)) + '.' + str(random.randint(1,254))
+>     print header
+>     uurl = ct.HIST_FQ_FACTOR_URL%(ct.P_TYPE['http'],
+>                                              ct.DOMAINS['vsf'], symbol)
+>     print uurl
+512,513c526,532
+<                                              ct.DOMAINS['vsf'], symbol))
+<     text = urlopen(request, timeout=10).read()
+---
+>                                              ct.DOMAINS['vsf'], symbol), headers = header)
+>     try:
+>         text = urlopen(request, timeout=20).read()
+>     except socket.error, e:
+>         df = pd.DataFrame()
+>         return df
+> 
+538c557
+< 
+---
+> import random
+543,544c562,572
+<             request = Request(url)
+<             text = urlopen(request, timeout=10).read()
+---
+>             #dh code: modify header to fix 456 error from server
+>             header = {
+>                 #"User-Agent":"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
+>                 "User-Agent":"Chrome",
+>                 'Connection':'keep-alive',
+>                 'X-Forwarded-For':'10.237.75.123'
+>             }
+>             header['X-Forwarded-For'] = str(random.randint(1,254)) + '.' + str(random.randint(1,254)) + '.' + str(random.randint(1,254)) + '.' + str(random.randint(1,254))
+>             print header
+>             request = Request(url, headers = header)
+>             text = urlopen(request, timeout=20).read()
+567a596,603
+>         except urllib2.HTTPError, e:
+>             print 'HTTP error!'
+>             print (e)
+>             if e.code == 456:
+>                 raise
+>                 return
+>         except socket.error, e:
+>             print 'Error?'
+568a605
+>             print 'Exception?'
+617a655
+>     print url
