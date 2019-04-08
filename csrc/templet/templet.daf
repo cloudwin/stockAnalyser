@@ -1,0 +1,33 @@
+#include "DAF___xxxxxx__.h"
+
+//---------------------------------------------------------
+static void* createInstance(int stockMarket)
+{
+    return (void*)(new DAF___xxxxxx__(stockMarket));
+}
+
+DAF_item get__xxxxxx__()
+{
+    DAF_item item = {DAF_NAME___xxxxxx__, createInstance};
+    return item;
+}
+//----------------------------------------------------------
+
+void DAF___xxxxxx__::init()
+{
+    //add your code here
+}
+
+bool DAF___xxxxxx__::buyChecker(char* date, int index, dayTradeList* tradeList)
+{
+    //add your code here
+    return false;
+}
+
+bool DAF___xxxxxx__::sellChecker(char* date, int index, dayTradeList* tradeList)
+{
+    //add your code here
+    return false;
+}
+
+
