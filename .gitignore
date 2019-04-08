@@ -2,3 +2,9 @@
 /data
 /log
 /.status
+*.o
+*.log
+*.csv
+*.so
+*.g
+
