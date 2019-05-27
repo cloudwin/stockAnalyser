@@ -435,9 +435,15 @@ long DAF::profit(long money)
     char tmp[256];
     if ( (_hold !=0) || (_sell.next.open == 0) )
     {
-        printf("\nNot solded yet, force sell!\n");
+        printf("\nNot sold yet, force sell!\n");
+        if (_current.trade.index == _hold)
+            memcpy(&_sell, &_current, sizeof(_current));
+        else
+        {
+            printf("Actually not bought any stock yet!\n");
+            return money;
+        }
         _hold = 0;
-        memcpy(&_sell, &_current, sizeof(_current));
     }
     //long amount = (long)(money / (_buy.next.open * 100)) * 100;
     float feeChange = 0;

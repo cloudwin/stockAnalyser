@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-CURRENT_DIR   =  '/home/hui/Projects/stockAnalyser/'
+CURRENT_DIR   =  '/home/hui/Git/StockAnalyser/'
 C_DIR         =  CURRENT_DIR + 'csrc/'
 LOG_DIR       =  CURRENT_DIR + 'log/'
 DATA_DIR      =  CURRENT_DIR + 'data/'
