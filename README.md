@@ -15,5 +15,5 @@
 4. make <DEBUG=1>
 
 ## Run analyser:
-1. ./script/analyser.py 2018-01-01 2018-12-31 mask=7
+1. ./script/analyser.py <daf_name> 2018-01-01 2018-12-31 mask=7
 2. use chart to display the result, ./script/chart.py ./log/macd_2018-01-01_2018-12-31_7_1.log                                                                                                            
